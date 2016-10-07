@@ -1,0 +1,26 @@
+{
+  "name": "phaser-ts-webpack",
+  "version": "1.0.0",
+  "description": "Boilerplate for Phaser Typescript and WebPack",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --content-base ./src/",
+    "postinstall": "typings install"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-open": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "ts-loader": "^0.8.2",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.3",
+    "typings": "^1.4.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "phaser": "^2.6.2"
+  }
+}
