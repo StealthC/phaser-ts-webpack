@@ -4,15 +4,19 @@
   "description": "Boilerplate for Phaser Typescript and WebPack",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base ./src/",
+    "start": "gulp",
+    "build": "gulp build",
+    "test": "gulp",
     "postinstall": "typings install"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-open": "^2.0.0",
     "gulp-util": "^3.0.7",
+    "run-sequence": "^1.2.2",
     "ts-loader": "^0.8.2",
     "tslint": "^3.15.1",
     "typescript": "^2.0.3",

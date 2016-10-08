@@ -13,12 +13,17 @@ var p2 = path.join(phaserModule, 'build/custom/p2.js')
     },
     output: {
         path: path.resolve(__dirname, "build"),
-        publicPath: "/js/",
-        filename: "bundle.js"
+        publicPath: "",
+        filename: "js/bundle.js"
     },
     resolve: {
         // Add `.ts` and `.tsx` as a resolvable extension.
-        extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+        extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+        alias: {
+            'phaser': phaser,
+            'pixi.js': pixi,
+            'p2': p2,
+        }
     },
     module: {
         loaders: [
@@ -27,11 +32,10 @@ var p2 = path.join(phaserModule, 'build/custom/p2.js')
         ]
     },
     plugins: [
-      //new webpack.optimize.CommonsChunkPlugin('phaser', 'phaser.js'),
       new webpack.ProvidePlugin({
-          PIXI: pixi,
-          Phaser: phaser,
-          p2: p2
+          PIXI: 'pixi.js',
+          Phaser: 'phaser',
+          p2: 'p2'
       })
     ]
  };

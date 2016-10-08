@@ -3,13 +3,23 @@ var gutil = require("gulp-util");
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require("./webpack.config.js");
-let open = require('gulp-open');
+var open = require('gulp-open');
+var del = require('del');
+var runSequence = require('run-sequence');
 
 // The development server (the recommended option for development)
 gulp.task("default", ["webpack-dev-server"]);
 
 // Production build
-gulp.task("build", ["webpack:build"]);
+gulp.task('build', function(callback) {
+    runSequence('clean-build',
+              ["webpack:build", 'files:build'],
+              callback);
+});
+
+gulp.task('clean-build', function() {
+    return del(['build']);
+});
 
 gulp.task("webpack:build", function(callback) {
 	// modify some webpack config options
@@ -35,6 +45,11 @@ gulp.task("webpack:build", function(callback) {
 	});
 });
 
+gulp.task('files:build', function() {
+  return gulp.src(['src/**', '!src/ts', '!src/ts/**'])
+    .pipe(gulp.dest('build'));
+});
+
 // modify some webpack config options
 var myDevConfig = Object.create(webpackConfig);
 myDevConfig.devtool = "sourcemap";
@@ -46,7 +61,7 @@ var devCompiler = webpack(myDevConfig);
 gulp.task("webpack-dev-server", function(callback) {
 	// modify some webpack config options
 	var myConfig = Object.create(webpackConfig);
-	myConfig.devtool = "source-map";
+	myConfig.devtool = "eval";
 	myConfig.debug = true;
 	myConfig.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/");
 	myConfig.devServer = { inline: true }
