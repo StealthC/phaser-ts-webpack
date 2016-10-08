@@ -59,10 +59,12 @@ gulp.task("webpack-dev-server", function(callback) {
 	myConfig.devtool = "eval";
 	myConfig.devServer = {
 		noInfo: true,
+    hot: true,
     inline: true
 	}
+	myConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
 	//myConfig.debug = true;
-	myConfig.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/");
+	myConfig.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/", 'webpack/hot/dev-server');
 
 	// Start a webpack-dev-server
 	new WebpackDevServer(webpack(myConfig), {
