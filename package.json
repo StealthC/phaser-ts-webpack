@@ -1,15 +1,14 @@
 {
-  "name": "phaser-ts-webpack",
+  "name": "phaser-ts-webpack-gulp",
   "version": "1.0.0",
-  "description": "Boilerplate for Phaser Typescript and WebPack",
-  "main": "index.js",
+  "description": "Boilerplate for Phaser Typescript using WebPack and gulp",
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
     "test": "gulp",
     "postinstall": "typings install"
   },
-  "author": "",
+  "author": "Carlos Alberto Castelo Elias Filho",
   "license": "ISC",
   "devDependencies": {
     "del": "^2.2.2",
